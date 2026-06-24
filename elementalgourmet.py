@@ -84,35 +84,28 @@ st.markdown('<div class="brand-title">ELEMENTAL</div>', unsafe_allow_html=True)
 st.markdown('<div class="brand-tagline">Masterpieces, Untouched.</div>', unsafe_allow_html=True)
 
 # Griglia asimmetrica per la riproduzione dei video loop multimediali
-# --- NUOVO CODICE DA INSERIRE IN APP.PY ---
-
 col1, col2 = st.columns(2)
 
 with col1:
     st.markdown('<div class="section-header">01. La Materia</div>', unsafe_allow_html=True)
-    
-    # Utilizzo di st.markdown nativo per bypassare il blocco Iframe di iOS
-    st.markdown("""
-        <div class="video-container">
-            <video width="100%" autoplay loop muted playsinline webkit-playsinline style="display:block; pointer-events:none;">
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-slicing-a-piece-of-cured-ham-41584-large.mp4" type="video/mp4">
-            </video>
-        </div>
-    """, unsafe_allow_html=True)
+    # Metodo nativo moderno: gestisce autonomamente il playsinline di iOS
+    st.video(
+        "https://assets.mixkit.co/videos/preview/mixkit-slicing-a-piece-of-cured-ham-41584-large.mp4",
+        autoplay=True,
+        loop=True,
+        muted=True
+    )
     st.caption("Il gesto millimetrico del taglio. Affinamento di Jamón Ibérico de Bellota 100% (48 Mesi).")
 
 with col2:
     st.markdown('<div class="section-header">02. Il Tempo</div>', unsafe_allow_html=True)
-    
-    st.markdown("""
-        <div class="video-container">
-            <video width="100%" autoplay loop muted playsinline webkit-playsinline style="display:block; pointer-events:none;">
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-cheese-wheel-42240-large.mp4" type="video/mp4">
-            </video>
-        </div>
-    """, unsafe_allow_html=True)
+    st.video(
+        "https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-cheese-wheel-42240-large.mp4",
+        autoplay=True,
+        loop=True,
+        muted=True
+    )
     st.caption("La spaccatura materica della forma. Parmigiano Reggiano DOP da Vacche Rosse (60 Mesi).")
-
 
 # Introduzione al concetto del Menù
 st.markdown('<div class="section-header">03. L\'Edit Europeo delle Eccellenze</div>', unsafe_allow_html=True)
