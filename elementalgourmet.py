@@ -4,26 +4,32 @@ import streamlit.components.v1 as components
 import urllib.request
 import os
 
-# --- DEFINIZIONE URL E NOMI FILE ---
+# --- CONFIGURAZIONE MULTIMEDIALE ---
 video1_url = "https://assets.mixkit.co/videos/preview/mixkit-slicing-a-piece-of-cured-ham-41584-large.mp4"
 video1_path = "materia_prosciutto.mp4"
 
 video2_url = "https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-cheese-wheel-42240-large.mp4"
 video2_path = "tempo_formaggio.mp4"
 
-# --- DOWNLOAD AUTOMATICO SUL SERVER STREAMLIT ---
-# Il server controlla se ha già i video. Se non li ha, li scarica da solo.
-if not os.path.exists(video1_path):
-    try:
-        urllib.request.urlretrieve(video1_url, video1_path)
-    except Exception as e:
-        st.warning(f"Errore nel download del video 1: {e}")
+# Funzione avanzata di download con camuffamento User-Agent
+def download_video(url, output_path):
+    if not os.path.exists(output_path):
+        try:
+            # Creiamo una richiesta spacciandoci per un browser reale
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+            }
+            req = urllib.request.Request(url, headers=headers)
+            
+            # Leggiamo i dati dal server e li salviamo sul disco di Streamlit
+            with urllib.request.urlopen(req) as response, open(output_path, 'wb') as out_file:
+                out_file.write(response.read())
+        except Exception as e:
+            st.error(f"Errore nel download di {output_path}: {e}")
 
-if not os.path.exists(video2_path):
-    try:
-        urllib.request.urlretrieve(video2_url, video2_path)
-    except Exception as e:
-        st.warning(f"Errore nel download del video 2: {e}")
+# Eseguiamo il download per entrambi i video
+download_video(video1_url, video1_path)
+download_video(video2_url, video2_path)
 
 # Configurazione dell'istanza web in modalità lusso discreto
 st.set_page_config(
@@ -107,12 +113,11 @@ st.markdown('<div class="brand-title">ELEMENTAL</div>', unsafe_allow_html=True)
 st.markdown('<div class="brand-tagline">Masterpieces, Untouched.</div>', unsafe_allow_html=True)
 
 
-# --- LAYOUT E VISUALIZZAZIONE ---
+# --- BLOCCO LAYOUT (Resta invariato) ---
 col1, col2 = st.columns(2)
 
 with col1:
     st.markdown('<div class="section-header">01. La Materia</div>', unsafe_allow_html=True)
-    # Ora Streamlit legge il file .mp4 direttamente dal suo hard disk interno
     if os.path.exists(video1_path):
         st.video(video1_path, autoplay=True, loop=True, muted=True)
     st.caption("Il gesto millimetrico del taglio. Affinamento di Jamón Ibérico de Bellota 100% (48 Mesi).")
