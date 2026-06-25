@@ -1,8 +1,7 @@
-# Salvare questo file come app.py per il deploy su GitHub / Streamlit Cloud
+# --- PARTE 1 ---
 import streamlit as st
-import os
 
-# --- 1. CONFIGURAZIONE OBBLIGATORIA (Deve essere la prima istruzione Streamlit) ---
+# 1. CONFIGURAZIONE OBBLIGATORIA
 st.set_page_config(
     page_title="ELEMENTAL | Masterpieces, Untouched.",
     page_icon="🕋",
@@ -10,9 +9,9 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# --- 2. LOGO VETTORIALE SVG: IL CERCHIO LINEARE ---
+# 2. LOGO VETTORIALE SVG
 logo_svg = """
-<div style="display: flex; justify-content: center; margin-top: 3rem; margin-bottom: 1rem;">
+<div style="display: flex; justify-content: center; margin-top: 2rem; margin-bottom: 1rem;">
     <svg width="110" height="110" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="512" height="512" rx="96" fill="#0B0B0B"/>
         <circle cx="256" cy="256" r="170" stroke="#D4AF37" stroke-width="4" stroke-linecap="round"/>
@@ -23,8 +22,7 @@ logo_svg = """
 """
 st.markdown(logo_svg, unsafe_allow_html=True)
 
-
-# --- 3. INIEZIONE CSS SARTORIALE ED EFFETTI CINEMATICI ---
+# 3. INIEZIONE CSS SARTORIALE ED EFFETTI CINEMATICI
 st.markdown("""
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600&display=swap');
@@ -35,7 +33,6 @@ st.markdown("""
             font-family: 'Inter', sans-serif !important;
         }
         
-        /* Rimozione degli elementi standard e watermark di Streamlit */
         [data-testid="stHeader"], footer {
             visibility: hidden;
             display: none;
@@ -74,37 +71,41 @@ st.markdown("""
             margin-bottom: 25px;
         }
         
-        /* Contenitore per l'effetto di movimento ipnotico (Ken Burns) */
         .kinetic-container {
             width: 100%;
-            height: 380px;
-            border-radius: 2px;
+            height: 400px;
+            border-radius: 4px;
             overflow: hidden;
             border: 1px solid #1a1a1a;
             position: relative;
             background-color: #0d0d0d;
+            transform: translate3d(0,0,0);
+            -webkit-transform: translate3d(0,0,0);
         }
         
         .kinetic-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.85) contrast(1.05);
-            animation: luxuryBreathe 28s ease-in-out infinite alternate;
-            -webkit-animation: luxuryBreathe 28s ease-in-out infinite alternate;
+            position: absolute;
+            top: 0;
+            left: 0;
+            filter: brightness(0.8) contrast(1.1);
+            will-change: transform;
+            animation: luxuryBreathe 24s infinite alternate ease-in-out;
+            -webkit-animation: luxuryBreathe 24s infinite alternate ease-in-out;
         }
         
-        /* Definizione del movimento fluido e impercettibile */
         @keyframes luxuryBreathe {
-            0% { transform: scale(1.0) translate(0, 0); }
-            100% { transform: scale(1.08) translate(-1%, -0.5%); }
+            0% { transform: scale(1.0); }
+            100% { transform: scale(1.12); }
         }
+        
         @-webkit-keyframes luxuryBreathe {
             0% { -webkit-transform: scale(1.0); }
-            100% { -webkit-transform: scale(1.08); }
+            100% { -webkit-transform: scale(1.12); }
         }
         
-        /* Stile per il form di prenotazione riservata */
         div[data-testid="stForm"] {
             border: 1px solid #1c1c1c !important;
             background-color: #0d0d0d !important;
@@ -114,37 +115,36 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+# --- PARTE 2 ---
 
-# --- 4. IDENTITÀ CENTRALE ---
+# 4. IDENTITÀ CENTRALE
 st.markdown('<div class="brand-title">ELEMENTAL</div>', unsafe_allow_html=True)
 st.markdown('<div class="brand-tagline">Masterpieces, Untouched.</div>', unsafe_allow_html=True)
 
-
-# --- 5. SEZIONE MULTIMEDIALE KINETIC (Sostituisce i vecchi video) ---
+# 5. SEZIONE MULTIMEDIALE KINETIC IMMAGINI
 col1, col2 = st.columns(2)
 
 with col1:
     st.markdown('<div class="section-header">01. La Materia</div>', unsafe_allow_html=True)
-    # Foto d'autore selezionata per il Pata Negra Jamón Ibérico
     st.markdown("""
         <div class="kinetic-container">
-            <img class="kinetic-image" src="https://images.unsplash.com/photo-1627664813831-26e957c73ef9?q=80&w=1200&auto=format&fit=crop" alt="Jamón Ibérico">
+            <img class="kinetic-image" src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?q=80&w=1200&auto=format&fit=crop" alt="Jamón Ibérico">
         </div>
     """, unsafe_allow_html=True)
     st.caption("Il gesto millimetrico del taglio. Affinamento di Jamón Ibérico de Bellota 100% (5 Jotas, 48 Mesi).")
 
 with col2:
     st.markdown('<div class="section-header">02. Il Tempo</div>', unsafe_allow_html=True)
-    # Foto d'autore selezionata per la texture del Parmigiano d'Eccellenza
     st.markdown("""
         <div class="kinetic-container">
-            <img class="kinetic-image" src="https://images.unsplash.com/photo-1608686207856-001b95cf60ca?q=80&w=1200&auto=format&fit=crop" alt="Parmigiano Reggiano">
+            <img class="kinetic-image" src="https://images.unsplash.com/photo-1624806992066-5ffcf7ca186b?q=80&w=1200&auto=format&fit=crop" alt="Parmigiano Reggiano">
         </div>
     """, unsafe_allow_html=True)
     st.caption("La spaccatura materica della forma. Parmigiano Reggiano DOP da Vacche Rosse (60 Mesi).")
 
+# --- PARTE 3 ---
 
-# --- 6. FILOSOFIA E CONCIERGE ---
+# 6. FILOSOFIA E CONCIERGE
 st.markdown('<div class="section-header">03. L\'Edit Europeo delle Eccellenze</div>', unsafe_allow_html=True)
 st.write("Un inventario rigidamente curato di ciò che la natura e l'affinamento hanno già reso perfetto. Senza l'interferenza della fiamma.")
 
