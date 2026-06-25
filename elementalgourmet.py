@@ -139,13 +139,13 @@ st.markdown("""
 
 # IDENTITÀ CENTRALE
 st.markdown('<div class="brand-title">ELEMENTAL</div>', unsafe_allow_html=True)
-st.markdown('<div class="brand-tagline">Masterpieces, Untouched.</div>', unsafe_allow_html=True)
+st.markdown('<div class="brand-tagline">Masterpieces, Untouched, ZeroCook.</div>', unsafe_allow_html=True)
 
 # SEZIONE MULTIMEDIALE
 col1, col2 = st.columns(2)
 
 with col1:
-    st.markdown('<div class="section-header">01. La Materia</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-header">La Materia</div>', unsafe_allow_html=True)
     
     # Ecco il tuo st.image pulito (cambia "pata.png" col nome reale del tuo file)
     st.image("pata.png")
@@ -153,7 +153,7 @@ with col1:
     st.caption("Il gesto millimetrico del taglio. Affinamento di Jamón Ibérico de Bellota 100% (5 Jotas, 48 Mesi).")
 
 with col2:
-    st.markdown('<div class="section-header">02. Il Tempo</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-header">Il Tempo</div>', unsafe_allow_html=True)
     
     # Inserisci il nome del file del formaggio
     st.image("parmigiano.png")
@@ -163,10 +163,10 @@ with col2:
 # --- PARTE 3 ---
 
 # 6. FILOSOFIA E CONCIERGE
-st.markdown('<div class="section-header">03. L\'Edit Europeo delle Eccellenze</div>', unsafe_allow_html=True)
+st.markdown('<div class="section-header">L\'Edit Internazionale delle Eccellenze</div>', unsafe_allow_html=True)
 st.write("Un inventario rigidamente curato di ciò che la natura e l'affinamento hanno già reso perfetto. Senza l'interferenza della fiamma.")
 
-st.markdown('<div class="section-header">04. Richiesta di Accesso</div>', unsafe_allow_html=True)
+st.markdown('<div class="section-header">Richiesta di Accesso</div>', unsafe_allow_html=True)
 with st.form("private_concierge_form"):
     st.write("L'esperienza ELEMENTAL accoglie un numero limitato di ospiti per sessione. Inserire i dettagli per richiedere l'inserimento in lista d'attesa.")
     client_name = st.text_input("Nome Completo / Ente")
