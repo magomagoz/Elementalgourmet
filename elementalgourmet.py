@@ -37,7 +37,24 @@ st.markdown("""
             visibility: hidden;
             display: none;
         }
+
+        /* Intercetta st.image nativo e lo trasforma in un riquadro animato */
+        [data-testid="stImage"] {
+            overflow: hidden;
+            border-radius: 4px;
+            border: 1px solid #1a1a1a;
+            background-color: #0d0d0d;
+        }
         
+        [data-testid="stImage"] img {
+            width: 100%;
+            object-fit: cover;
+            filter: brightness(0.8) contrast(1.1);
+            will-change: transform;
+            animation: luxuryBreathe 24s infinite alternate ease-in-out;
+            -webkit-animation: luxuryBreathe 24s infinite alternate ease-in-out;
+        }
+
         .brand-title {
             font-size: 3.5rem;
             font-weight: 200;
@@ -118,28 +135,29 @@ st.markdown("""
 # --- PARTE 2 ---
 
 # 4. IDENTITÀ CENTRALE
+# --- PARTE 2 Semplificata ---
+
+# IDENTITÀ CENTRALE
 st.markdown('<div class="brand-title">ELEMENTAL</div>', unsafe_allow_html=True)
 st.markdown('<div class="brand-tagline">Masterpieces, Untouched.</div>', unsafe_allow_html=True)
 
-# 5. SEZIONE MULTIMEDIALE KINETIC IMMAGINI
+# SEZIONE MULTIMEDIALE
 col1, col2 = st.columns(2)
 
 with col1:
     st.markdown('<div class="section-header">01. La Materia</div>', unsafe_allow_html=True)
-    st.markdown("""
-        <div class="kinetic-container">
-            <img class="kinetic-image" src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?q=80&w=1200&auto=format&fit=crop" alt="Jamón Ibérico">
-        </div>
-    """, unsafe_allow_html=True)
+    
+    # Ecco il tuo st.image pulito (cambia "pata.png" col nome reale del tuo file)
+    st.image("pata.png")
+    
     st.caption("Il gesto millimetrico del taglio. Affinamento di Jamón Ibérico de Bellota 100% (5 Jotas, 48 Mesi).")
 
 with col2:
     st.markdown('<div class="section-header">02. Il Tempo</div>', unsafe_allow_html=True)
-    st.markdown("""
-        <div class="kinetic-container">
-            <img class="kinetic-image" src="https://images.unsplash.com/photo-1624806992066-5ffcf7ca186b?q=80&w=1200&auto=format&fit=crop" alt="Parmigiano Reggiano">
-        </div>
-    """, unsafe_allow_html=True)
+    
+    # Inserisci il nome del file del formaggio
+    st.image("parmigiano.png")
+    
     st.caption("La spaccatura materica della forma. Parmigiano Reggiano DOP da Vacche Rosse (60 Mesi).")
 
 # --- PARTE 3 ---
