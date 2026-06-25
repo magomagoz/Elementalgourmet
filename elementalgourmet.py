@@ -4,6 +4,20 @@ import streamlit.components.v1 as components
 import urllib.request
 import os
 
+# --- LOGO VETTORIALE SVG: IL CERCHIO LINEARE ---
+logo_svg = """
+<div style="display: flex; justify-content: center; margin-bottom: 2rem;">
+    <svg width="120" height="120" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="512" height="512" rx="96" fill="#0B0B0B"/>
+        <circle cx="256" cy="256" r="170" stroke="#D4AF37" stroke-width="4" stroke-linecap="round"/>
+        <path d="M211 180 L211 332 M211 180 L301 180 M211 256 L281 256 M211 332 L301 332" 
+              stroke="#D4AF37" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</div>
+"""
+
+st.markdown(logo_svg, unsafe_allow_html=True)
+
 # --- CONFIGURAZIONE MULTIMEDIALE ---
 video1_url = "https://assets.mixkit.co/videos/preview/mixkit-slicing-a-piece-of-cured-ham-41584-large.mp4"
 video1_path = "materia_prosciutto.mp4"
